@@ -48,17 +48,8 @@ const Home = () => {
         <div className="h-80 w-full bg-[#E1E1E1]"></div> 
       </div>
       {/* Anuncios */}
-      <div className="flex flex-col">
-        <div className="flex justify-between p-24">
-          <Link href={"/"} className="h-48 w-80 bg-[#898888]"></Link>
-          <Link href={"/"} className="h-48 w-80 bg-[#898888]"></Link>
-          <Link href={"/"} className="h-48 w-80 bg-[#898888]"></Link>
-        </div>
-        <div className="flex justify-between p-24">
-          <Link href={"/"} className="h-48 w-80 bg-[#898888]"></Link>
-          <Link href={"/"} className="h-48 w-80 bg-[#898888]"></Link>
-          <Link href={"/"} className="h-48 w-80 bg-[#898888]"></Link>
-        </div>
+      <div className="flex flex-col p-96">
+        
       </div>
       <div>
         {/* Footer */}
