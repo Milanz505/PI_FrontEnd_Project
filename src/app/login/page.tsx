@@ -8,30 +8,24 @@ import { useRouter } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errorLogin, setErrorLogin] = useState("");
+  const [errorCadastro, setErrorCadastro] = useState("");
+  const [successCadastro, setSuccessCadastro] = useState("");
 
   const [nome, setNome] = useState("");
   const [emailRegister, setEmailRegister] = useState("");
   const [passwordRegister, setPasswordRegister] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  //não esta funcionando como vetor
-
-  // const clearInputs = (inputIds: string[]) => {
-  //     console.log("Clearing inputs", inputIds);
-  //     inputIds.forEach((id) => {
-  //         const input = document.getElementById(id) as HTMLInputElement;
-  //         input.value = "";
-  //   });
-  // };
-
-  //não esta funcionando com variaveis
-  const limparCampos = () => {
-    const input = document.getElementById("usuario") as HTMLInputElement;
-    input.value = "";
+   const clearInputs = (inputIds: string[]) => {
+       console.log("Clearing inputs", inputIds);
+       inputIds.forEach((inputId) => {
+          const input = document.getElementById(inputId) as HTMLInputElement;
+          input.value = "";
+    });
   };
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,11 +47,10 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
             console.log("Register successful", data);
-          
-            limparCampos();
-            
+            setSuccessCadastro("Cadastro realizado com sucesso!");
+            clearInputs(["usuario", "emailcadastro", "passwordcadastro", "passwordconfirm"]);
       } else {
-        setError(data.message);
+        setErrorCadastro(data.message);
       }
     } catch (registerError) {
       console.log("An error ocurred", registerError);
@@ -79,9 +72,9 @@ const Login = () => {
       if (response.ok) {
         console.log("Login sucessful", data);
         router.push("/");
-        // clearInputs(["email", "password"])
+        clearInputs(["email", "password"])
       } else {
-        setError(data.message);
+        setErrorLogin(data.message);
       }
     } catch (error) {
       console.log("An error ocurred", error);
@@ -120,7 +113,7 @@ const Login = () => {
               className="rounded-full p-1 border-[#898888] border outline-none"
               onChange={(e) => setPassword(e.target.value)}
             />
-            {error && <p className="text-red-500">{error}</p>}
+            {errorLogin && <p className="text-red-500">{errorLogin}</p>}
             <Button
               type="submit"
               className="mt-5 p-2 bg-[#D9D9D9] rounded-lg border-[#898888]"
@@ -169,6 +162,8 @@ const Login = () => {
               className="rounded-full p-1 border-[#898888] border outline-none"
               onChange={(e) => setPasswordConfirm(e.target.value)}
             />
+            {errorCadastro && <p className="text-red-500">{errorCadastro}</p>}
+            {successCadastro && <p className="text-green-500">{successCadastro}</p>}
             <Button
               type="submit"
               className="mt-5 p-2 bg-[#D9D9D9] rounded-lg border-[#898888]"
@@ -182,7 +177,6 @@ const Login = () => {
   );
 };
 //------------------------------------- alta -------------------------------------
-//limpar os campos de cadastro apos o cadastro e escrever "cadastro realizado com sucesso" em verde
 //aparecer o usuario logado ao invez de "entrar"
 //criar um botão de sair
 //criar um botão "cadastrar automovel"ou algo do tipo no header para o usuario logado
