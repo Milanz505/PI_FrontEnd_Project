@@ -3,11 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
 const CadastroProdutos = () => {
-
+    const router = useRouter();
 
     const [errorLogin, setErrorLogin] = useState("");
     const [errorCadastro, setErrorCadastro] = useState("");
@@ -67,7 +68,9 @@ const CadastroProdutos = () => {
   return(
     <main className='bg-gradient-to-r from-white via-zinc-100 to-[#898888] w-full h-screen flex items-center justify-center'>
         <div className="bg-white p-10 rounded-lg shadow-lg "> 
-          <Link href="/" className="fixed p-12">Voltar</Link>
+        <Button className="fixed p-6 bg-[#D9D9D9] rounded-xl border-[#898888]" onClick={() => (router.push("/"))}>
+              Voltar
+            </Button>
             <div id="headerid" className="h-40 w-full  items-center justify-center flex">
                 <h1 className="font-bold italic text-7xl">Cadastro de Veículo</h1>
             </div>

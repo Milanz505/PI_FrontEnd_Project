@@ -1,10 +1,14 @@
 'use client'
 
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 import { useEffect } from "react";
 
 
 const Home = () => {
+  const router = useRouter();
+
   useEffect(() => {
     const header = document.getElementById("headerid");
     const sticky = header?.offsetTop;
@@ -33,10 +37,18 @@ const Home = () => {
         
         {/* Botões */}
         <div className="flex space-x-10">
-          <Link href="/cadastroprodutos" className="">Cadastrar Produto</Link>
-          <Link href="/" className="">Comprar</Link>
-          <Link href="/" className="">FIPE</Link>
-          <Link href="/" className="">Sobre</Link>
+          <Button className=" bg-[#898888] border-[#898888]" onClick={() => (router.push("/cadastroprodutos"))}>
+              Cadastrar Produto
+            </Button>
+            <Button className=" bg-[#898888] border-[#898888]" onClick={() => (router.push("/"))}>
+              Comprar
+            </Button>
+            <Button className=" bg-[#898888] border-[#898888]" onClick={() => (router.push("/"))}>
+              FIPE
+            </Button>
+            <Button className=" bg-[#898888] border-[#898888]" onClick={() => (router.push("/"))}>
+              Sobre
+            </Button>
         </div>
       </div>
       {/* Botão de login */}
