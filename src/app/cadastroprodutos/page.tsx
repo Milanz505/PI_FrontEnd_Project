@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 import { useState } from "react";
 
 
@@ -19,6 +20,7 @@ const CadastroProdutos = () => {
     const [ano, setAno] = useState("");
     const [preco, setPreco] = useState("");
     const [descricao, setDescricao] = useState("");
+    const idUsuario = "00335dd7-33b7-4cc6-b18d-53140e1074ee";
 
      const clearInputs = (inputIds: string[]) => {
          console.log("Clearing inputs", inputIds);
@@ -45,12 +47,13 @@ const CadastroProdutos = () => {
             ano: ano,
             preco: preco,
             descricao: descricao,
+            user:{id: idUsuario},
           }),
         });
         const data = await response.json();
         if (response.ok) {
               console.log("Register successful", data);
-              setSuccessCadastro("Anúnciorealizado com sucesso!");
+              setSuccessCadastro("Anúncio realizado com sucesso!");
               clearInputs(["nomeautomovel", "modelo", "marca", "tempouso", "ano", "preco", "descricao"]);
         } else {
           setErrorCadastro(data.message);
@@ -62,8 +65,9 @@ const CadastroProdutos = () => {
   
 
   return(
-    <main className='bg-gradient-to-r from-zinc-200 via-zinc-400 to-[#898888] w-full h-screen flex items-center justify-center'>
+    <main className='bg-gradient-to-r from-white via-zinc-100 to-[#898888] w-full h-screen flex items-center justify-center'>
         <div className="bg-white p-10 rounded-lg shadow-lg "> 
+          <Link href="/" className="fixed p-12">Voltar</Link>
             <div id="headerid" className="h-40 w-full  items-center justify-center flex">
                 <h1 className="font-bold italic text-7xl">Cadastro de Veículo</h1>
             </div>
@@ -103,7 +107,7 @@ const CadastroProdutos = () => {
                             const file = event.target.files?.[0];
                             console.log(file);
                         }}/>
-                        <Button type="submit" className='mt-11 p-2 bg-zinc-500 rounded-lg border-[#898888] text-base'>Registrar</Button>
+                        <Button type="submit" className='mt-11 p-2 bg-[#D9D9D9] rounded-lg border-[#898888] text-base'>Registrar</Button>
                         {successCadastro && <p className="text-green-500">{successCadastro}</p>}
                     </div>
 
