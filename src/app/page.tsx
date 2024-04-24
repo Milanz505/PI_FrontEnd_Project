@@ -33,9 +33,7 @@ const Home = () => {
         <div className="h-10 w-72 bg-white rounded-full"></div>
         {/* Botões */}
         <div className="flex space-x-10">
-          <p>Comprar</p>
-          <p>FIPE</p>
-          <p>Ajuda</p>
+          <Link href="/cadastroprodutos" className="">Cadastrar Produto</Link>
         </div>
       </div>
       {/* Botão de login */}
