@@ -38,7 +38,7 @@ const Home = () => {
         {/* Botões */}
         <div className="flex space-x-10">
           <Button className=" bg-[#898888] border-[#898888]" onClick={() => (router.push("/cadastroprodutos"))}>
-              Cadastrar Produto
+              Cadastrar Veículo
             </Button>
             <Button className=" bg-[#898888] border-[#898888]" onClick={() => (router.push("/"))}>
               Comprar
