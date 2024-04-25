@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 const Login = () => {
@@ -83,6 +84,11 @@ const Login = () => {
 
   return (
     <main className="bg-gradient-to-r from-white via-zinc-100 to-[#898888] w-full h-screen">
+      <div className="p-10 fixed">
+          <Button className="fixed p-6 bg-[#D9D9D9] rounded-xl border-[#898888]" onClick={() => (router.push("/"))}>
+              Voltar
+            </Button>
+      </div>
       <div className="">
         <div
           id="headerid"
