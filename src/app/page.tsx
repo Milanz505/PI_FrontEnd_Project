@@ -56,7 +56,7 @@ const Home = () => {
         <div className="h-7 w-7 bg-[#D9D9D9] rounded-full"></div>
         <Link href="/login" className="">Entrar</Link>
       </div>
-    
+
       <div>
         {/* Footer */}
         <div className="h-96 w-full bg-[#898888] items-center justify-center flex">

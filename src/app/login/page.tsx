@@ -88,6 +88,7 @@ const Login = () => {
           <Button className="fixed p-6 bg-[#D9D9D9] rounded-xl border-[#898888]" onClick={() => (router.push("/"))}>
               Voltar
             </Button>
+
         <div
           id="headerid"
           className="h-40 w-full  items-center justify-center flex"
@@ -180,5 +181,13 @@ const Login = () => {
     </main>
   );
 };
+//------------------------------------- alta -------------------------------------
+//aparecer o usuario logado ao invez de "entrar"
+//criar um botão de sair
+//criar um botão "cadastrar automovel"ou algo do tipo no header para o usuario logado
+//------------------------------------- media prioridade -------------------------------------
+//fazer o autenticador de se a senha e afins estao corretos e avisar o usuario usando o Zod (nao é dificil)
+//------------------------------------- baixa prioridade -------------------------------------
+//fazer alguns carros na tela inicial usando component do shadcn para facilitar
 
 export default Login;
