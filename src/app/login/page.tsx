@@ -88,8 +88,7 @@ const Login = () => {
           <Button className="fixed p-6 bg-[#D9D9D9] rounded-xl border-[#898888]" onClick={() => (router.push("/"))}>
               Voltar
             </Button>
-      </div>
-      <div className="">
+
         <div
           id="headerid"
           className="h-40 w-full  items-center justify-center flex"
