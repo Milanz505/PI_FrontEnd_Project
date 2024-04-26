@@ -1,5 +1,6 @@
 'use client'
 
+import "../app/globals.css"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
-const CadastroProdutos = () => {
+const CadastrarVeiculo = () => {
     const router = useRouter();
 
     const [errorLogin, setErrorLogin] = useState("");
@@ -21,7 +22,7 @@ const CadastroProdutos = () => {
     const [ano, setAno] = useState("");
     const [preco, setPreco] = useState("");
     const [descricao, setDescricao] = useState("");
-    const idUsuario = "00335dd7-33b7-4cc6-b18d-53140e1074ee";
+    const idUsuario = "e76d5fad-ce82-4340-880e-32c6cb929a38";
 
      const clearInputs = (inputIds: string[]) => {
          console.log("Clearing inputs", inputIds);
@@ -123,4 +124,4 @@ const CadastroProdutos = () => {
   );
 };
 
-export default CadastroProdutos;
+export default CadastrarVeiculo;

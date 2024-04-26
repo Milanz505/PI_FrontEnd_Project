@@ -1,10 +1,12 @@
 "use client";
 
+import "../app/globals.css"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import registrarUsuario from "@/APIs/auth";
 
 
 const Login = () => {
@@ -29,22 +31,10 @@ const Login = () => {
     });
   };
 
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+/*  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/User", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          nome: nome,
-          email: emailRegister,
-          senha: passwordRegister,
-          confirmarSenha: passwordConfirm,
-        }),
-      });
+      const response = await registrarUsuario(nome, emailRegister, passwordRegister, passwordConfirm)
       const data = await response.json();
       if (response.ok) {
             console.log("Register successful", data);
@@ -56,6 +46,19 @@ const Login = () => {
     } catch (registerError) {
       console.log("An error ocurred", registerError);
     }
+  };*/
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    try {
+      const response = await registrarUsuario(nome, emailRegister, passwordRegister, passwordConfirm);
+      console.log(response);
+  
+    } catch (error) {
+      console.error(error);
+    }
+  
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -72,7 +75,7 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         console.log("Login sucessful", data);
-        router.push("/");
+        //router.push("/");
         clearInputs(["email", "password"])
       } else {
         setErrorLogin(data.message);
