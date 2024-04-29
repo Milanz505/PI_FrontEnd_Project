@@ -1,5 +1,3 @@
-// APIs/authAPI.ts
-
 import axios from 'axios';
 
 const registrarUsuario = async (

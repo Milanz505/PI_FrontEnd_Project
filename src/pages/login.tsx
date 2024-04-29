@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import registrarUsuario from "@/APIs/auth";
+import registrarUsuario from "@/APIs/userRegistration";
+import logarUsuario from "@/APIs/userAuthentication";
 
 
 const Login = () => {
@@ -31,58 +32,35 @@ const Login = () => {
     });
   };
 
-/*  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await registrarUsuario(nome, emailRegister, passwordRegister, passwordConfirm)
-      const data = await response.json();
-      if (response.ok) {
-            console.log("Register successful", data);
-            setSuccessCadastro("Cadastro realizado com sucesso!");
-            clearInputs(["usuario", "emailcadastro", "passwordcadastro", "passwordconfirm"]);
-      } else {
-        setErrorCadastro(data.message);
-      }
-    } catch (registerError) {
-      console.log("An error ocurred", registerError);
-    }
-  };*/
-
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
     try {
       const response = await registrarUsuario(nome, emailRegister, passwordRegister, passwordConfirm);
-      console.log(response);
-  
+      console.log("Register sucessful",response);
+      setSuccessCadastro("Cadastro realizado com sucesso!");
+      clearInputs(["usuario", "emailcadastro", "passwordcadastro", "passwordconfirm"]);
     } catch (error) {
       console.error(error);
+      setErrorCadastro("Erro no cadastro, verifique seus dados");
     }
   
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
-      const response = await fetch("http://localhost:8080/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({ email, senha: password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        console.log("Login sucessful", data);
-        //router.push("/");
-        clearInputs(["email", "password"])
-      } else {
-        setErrorLogin(data.message);
-      }
+      const response = await logarUsuario(email, password);
+      console.log("Login sucessful", response);
+      router.push("/");
+      clearInputs(["email", "password"])
+
     } catch (error) {
-      console.log("An error ocurred", error);
+      console.error(error);
+      setErrorLogin("Erro no login, verifique seus dados");
     }
+  
   };
 
   return (
