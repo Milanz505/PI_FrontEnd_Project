@@ -31,37 +31,5 @@ const registrarVeiculo = async (
     }
   };
 
-  /*const handleRegisterProduct = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:8080/anuncio", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          nomeDoAutomovel: nomeautomovel,
-          modelo: modelo,
-          marca: marca,
-          tempoDeUso: tempouso,
-          ano: ano,
-          preco: preco,
-          descricao: descricao,
-          user:{id: idUsuario},
-        }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-            console.log("Register successful", data);
-            setSuccessCadastro("Anúncio realizado com sucesso!");
-            clearInputs(["nomeautomovel", "modelo", "marca", "tempouso", "ano", "preco", "descricao"]);
-      } else {
-        setErrorCadastro(data.message);
-      }
-    } catch (registerError) {
-      console.log("An error ocurred", registerError);
-    }
-  };
-  */
+
   export default registrarVeiculo;

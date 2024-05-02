@@ -12,7 +12,6 @@ import registrarVeiculo from "@/APIs/vehicleRegistration";
 const CadastrarVeiculo = () => {
     const router = useRouter();
 
-    const [errorLogin, setErrorLogin] = useState("");
     const [errorCadastro, setErrorCadastro] = useState("");
     const [successCadastro, setSuccessCadastro] = useState("");
     
@@ -23,7 +22,7 @@ const CadastrarVeiculo = () => {
     const [ano, setAno] = useState("");
     const [preco, setPreco] = useState("");
     const [descricao, setDescricao] = useState("");
-    const idUsuario = "e76d5fad-ce82-4340-880e-32c6cb929a38";
+    const idUsuario = "3e879469-87dd-4938-8627-35eac63391fb";
 
      const clearInputs = (inputIds: string[]) => {
          console.log("Clearing inputs", inputIds);
@@ -46,42 +45,6 @@ const CadastrarVeiculo = () => {
       }
     
     };
-  
-    /*const handleRegisterProduct = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      try {
-        const response = await fetch("http://localhost:8080/anuncio", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-          body: JSON.stringify({
-            nomeDoAutomovel: nomeautomovel,
-            modelo: modelo,
-            marca: marca,
-            tempoDeUso: tempouso,
-            ano: ano,
-            preco: preco,
-            descricao: descricao,
-            user:{id: idUsuario},
-          }),
-        });
-        const data = await response.json();
-        if (response.ok) {
-              console.log("Register successful", data);
-              setSuccessCadastro("Anúncio realizado com sucesso!");
-              clearInputs(["nomeautomovel", "modelo", "marca", "tempouso", "ano", "preco", "descricao"]);
-        } else {
-          setErrorCadastro(data.message);
-        }
-      } catch (registerError) {
-        console.log("An error ocurred", registerError);
-      }
-    };*/
-
-    
-  
 
   return(
     <main className='bg-gradient-to-r from-white via-zinc-100 to-[#898888] w-full h-screen flex items-center justify-center'>
@@ -130,6 +93,7 @@ const CadastrarVeiculo = () => {
                         }}/>
                         <Button type="submit" className='mt-11 p-2 bg-[#D9D9D9] rounded-lg border-[#898888] text-base'>Registrar</Button>
                         {successCadastro && <p className="text-green-500">{successCadastro}</p>}
+                        {errorCadastro && <p className="text-red-500">{errorCadastro}</p>}
                     </div>
 
                 </form>
