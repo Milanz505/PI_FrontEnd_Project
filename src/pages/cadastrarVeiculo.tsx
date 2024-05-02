@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import registrarVeiculo from "@/APIs/vehicleRegistration";
 
 
 const CadastrarVeiculo = () => {
@@ -31,8 +32,22 @@ const CadastrarVeiculo = () => {
             input.value = "";
       });
     };
-  
+
     const handleRegisterProduct = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        const response = await registrarVeiculo(nomeautomovel, modelo, marca, tempouso, ano, preco, descricao, idUsuario);
+        console.log("Register sucessful",response);
+        setSuccessCadastro("Anúncio realizado com sucesso!");
+        clearInputs(["nomeautomovel", "modelo", "marca", "tempouso", "ano", "preco", "descricao"]);
+      } catch (error) {
+        console.error(error);
+        setErrorCadastro("Erro no cadastro, verifique seus dados");
+      }
+    
+    };
+  
+    /*const handleRegisterProduct = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       try {
         const response = await fetch("http://localhost:8080/anuncio", {
@@ -63,7 +78,9 @@ const CadastrarVeiculo = () => {
       } catch (registerError) {
         console.log("An error ocurred", registerError);
       }
-    };
+    };*/
+
+    
   
 
   return(

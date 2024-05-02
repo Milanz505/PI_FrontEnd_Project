@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+
 import registrarUsuario from "@/APIs/userRegistration";
 import logarUsuario from "@/APIs/userAuthentication";
 
@@ -162,13 +163,4 @@ const Login = () => {
     </main>
   );
 };
-//------------------------------------- alta -------------------------------------
-//aparecer o usuario logado ao invez de "entrar"
-//criar um botão de sair
-//criar um botão "cadastrar automovel"ou algo do tipo no header para o usuario logado
-//------------------------------------- media prioridade -------------------------------------
-//fazer o autenticador de se a senha e afins estao corretos e avisar o usuario usando o Zod (nao é dificil)
-//------------------------------------- baixa prioridade -------------------------------------
-//fazer alguns carros na tela inicial usando component do shadcn para facilitar
-
 export default Login;
