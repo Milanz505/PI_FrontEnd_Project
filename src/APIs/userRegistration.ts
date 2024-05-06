@@ -16,7 +16,7 @@ const registrarUsuario = async (
 
     if (!response.data) {
       throw new Error('Registration failed');
-    }
+      }
 
     return response;
   } catch (error) {
