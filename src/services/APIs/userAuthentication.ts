@@ -6,16 +6,17 @@ const logarUsuario = async (
 ) => {
   try {
     const response = await axios.post("http://localhost:8080/auth", {
-      email,
-      senha,
+      email:email,
+      senha:senha,
     });
     
-    if (!response.data) {
+    if (!response) {
         throw new Error('Login failed');
       }
-  
+      console.log(response.data);
       return response;
     } catch (error) {
+      console.log(error)
       throw error;
     }
 };
