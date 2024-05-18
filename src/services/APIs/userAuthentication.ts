@@ -13,7 +13,7 @@ const logarUsuario = async (
     if (!response) {
         throw new Error('Login failed');
       }
-      console.log(response.data);
+      // console.log(response.data);
       return response;
     } catch (error) {
       console.log(error)

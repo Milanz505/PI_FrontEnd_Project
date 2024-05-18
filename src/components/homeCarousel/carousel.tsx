@@ -18,8 +18,8 @@ const CarouselSize = () => {
         className=" min-w-full px-12"
       >
         <CarouselContent >
-          {Array.from({ length: 7 }).map((_, index) => (
-            <CarouselItem key={index} className=" ">
+          {Array.from({ length: 9 }).map((_, index) => (
+            <CarouselItem key={index} className="basis-1/6">
               <div className="">
                 <ProductCard></ProductCard>
               </div>

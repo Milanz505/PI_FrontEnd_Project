@@ -5,12 +5,15 @@ import { setCookie, parseCookies } from "nookies";
 import Router from "next/router";
 import api from "@/lib/api";
 import logarUsuario from "@/services/APIs/userAuthentication";
+import jwt from 'jsonwebtoken';
 
 type UserData = {
-    name: string,
-    email: string,
-    avatar_url: string
-}
+  confirmarSenha: string;
+  email: string;
+  id: string;
+  nome: string;
+  senha: string;
+};
 
 type SignInData = {
     email: string,
@@ -43,9 +46,8 @@ const AuthProvider = ({ children }:any) => {
 
     useEffect(() => {
         const { 'nextauth.token': token } = parseCookies()
-
         if (token){
-            
+        // const decodedToken = jwt.verify(token, secret, { complete: true });
         }
     }, [])
 
@@ -55,13 +57,13 @@ const AuthProvider = ({ children }:any) => {
             password,
         )
         const {token, user} = response.data
-
+        
         setCookie(undefined, 'nextauth.token', token, {
             maxAge: 60*60*1, //1 hour
         })
-
+        
         api.defaults.headers['Authorization'] = `Bearer ${token}`;
-
+        
         setUser(user)
         
     }
