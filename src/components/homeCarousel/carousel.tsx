@@ -13,9 +13,9 @@ import {
 const CarouselSize = () => {
   return (
 
-    <div className="w-full ">
+    <div className="w-full border-none p-0">
       <Carousel
-        className=" min-w-full px-12"
+        className=" min-w-full px-12 "
       >
         <CarouselContent >
           {Array.from({ length: 9 }).map((_, index) => (
