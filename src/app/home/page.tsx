@@ -40,9 +40,9 @@ const Home = () => {
               </Fragment>
             ))}
           </div>
-          <div>
-            <div className="w-24 flex items-center">
-              <div className="rounded-full">
+          <div className="text-sm font-medium w-24">
+            {token ? (
+              <div className="rounded-full flex items-center justify-center">
                 <Image
                   className="h-8 w-8 mr-2 rounded-full"
                   src={"https://github.com/MateusLyoshka.png"}
@@ -50,24 +50,21 @@ const Home = () => {
                   width={460}
                   height={460}
                 />
+                <a>{user?.nome}</a>
               </div>
-              <span>
-                {/* <div className="text-sm font-medium">
-                {token? (
-                  <a>{user?.nome}</a>
-                  
-                ) : (
-
-                <Link
-                  href={"/home/login"}
-                >
-                  Entrar
-                </Link>
-                )}
-
-                </div> */}
-              </span>
-            </div>
+            ) : (
+              <div className="rounded-full flex items-center justify-center">
+                <Link href={"/home/login"}>
+                <Image
+                  className="h-8 w-8 mr-2 rounded-full"
+                  src={"https://github.com/MateusLyoshka.png"}
+                  alt="Workflow"
+                  width={460}
+                  height={460}
+                />
+                  Entrar</Link>
+              </div>
+            )}
           </div>
         </div>
         <div className="bg-[#EEEEEE] h-96 flex flex-col justify-center items-center">
