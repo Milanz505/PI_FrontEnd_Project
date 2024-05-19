@@ -9,6 +9,7 @@ import { parseCookies } from "nookies"
 import { useRouter } from "next/navigation"
 import { AuthContext } from "@/contexts/authContext"
 
+
 const navigation = ['Comprar', 'Vender', 'FIPE', 'Sobre']
 
 
@@ -21,6 +22,7 @@ const Home = () => {
     if(!token){
       // router.push('/')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -41,7 +43,7 @@ const Home = () => {
             ))}
           </div>
           <div className="text-sm font-medium w-24">
-            {token ? (
+            {/* {token ? (
               <div className="rounded-full flex items-center justify-center">
                 <Image
                   className="h-8 w-8 mr-2 rounded-full"
@@ -50,21 +52,15 @@ const Home = () => {
                   width={460}
                   height={460}
                 />
-                <a>{user?.nome}</a>
+                <div>{user?.nome}</div>
               </div>
             ) : (
               <div className="rounded-full flex items-center justify-center">
                 <Link href={"/home/login"}>
-                <Image
-                  className="h-8 w-8 mr-2 rounded-full"
-                  src={"https://github.com/MateusLyoshka.png"}
-                  alt="Workflow"
-                  width={460}
-                  height={460}
-                />
-                  Entrar</Link>
+                  Entrar
+                </Link>
               </div>
-            )}
+            )} */}
           </div>
         </div>
         <div className="bg-[#EEEEEE] h-96 flex flex-col justify-center items-center">

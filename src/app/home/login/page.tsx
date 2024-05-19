@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation";
 import { useContext } from "react"
 import { AuthContext } from "@/contexts/authContext"
+import Image from 'next/image'
 
 
 const Login = () => {
@@ -23,7 +24,16 @@ const Login = () => {
     }
 
     return (
-      <div className="min-h-screen bg-[#f3f4f6] flex justify-end">
+      <div className="min-h-screen bg-[#f3f4f6] flex justify-between">
+        <div className="w-full">
+        <Image
+                  className="h-full "
+                  src={"https://placehold.co/1920x1080/png"}
+                  alt="Workflow"
+                  width={1920}
+                  height={1080}
+                />
+        </div>
         <div className="bg-white p-10 rounded-lg shadow-lg w-96 flex items-center">
           <div className="w-full">
             <div className="flex justify-center mb-10">
