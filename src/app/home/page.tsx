@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import Carousel from "@/components/homeCarousel/carousel"
-import { Fragment, JSX, SVGProps, use, useContext, useEffect } from "react"
+import { Fragment, JSX, SVGProps, Suspense, use, useContext, useEffect } from "react"
 import Image from 'next/image'
 import Link from "next/link"
 import { parseCookies } from "nookies"
@@ -17,13 +17,6 @@ const Home = () => {
   const ctxfunc = useContext(AuthContext)
   const user = ctxfunc.user
   const router = useRouter()
-  const {'nextauth.token': token} = parseCookies()
-  useEffect(() => {
-    if(!token){
-      // router.push('/')
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <main className="min-h-min">
@@ -42,26 +35,35 @@ const Home = () => {
               </Fragment>
             ))}
           </div>
-          <div className="text-sm font-medium w-24">
-            {/* {token ? (
-              <div className="rounded-full flex items-center justify-center">
-                <Image
-                  className="h-8 w-8 mr-2 rounded-full"
-                  src={"https://github.com/MateusLyoshka.png"}
-                  alt="Workflow"
-                  width={460}
-                  height={460}
-                />
-                <div>{user?.nome}</div>
-              </div>
-            ) : (
-              <div className="rounded-full flex items-center justify-center">
-                <Link href={"/home/login"}>
-                  Entrar
-                </Link>
-              </div>
-            )} */}
-          </div>
+                <Suspense fallback = {<p>Loading</p>}>
+                  {user? (
+                            <div className="text-sm font-medium w-24">
+                              <div className="rounded-full flex items-center justify-center">
+                  <Image
+                    className="h-8 w-8 mr-2 rounded-full"
+                    src={"https://github.com/MateusLyoshka.png"}
+                    alt="Workflow"
+                    width={460}
+                    height={460}
+                  />
+                  <div>{user?.nome}</div>
+                                </div>
+                              </div>
+                  ) : (
+                    <div className="flex flex-row">
+                      <Link href="/home/login">
+                        <Button className="p-10" variant={"ghost"}>
+                          Login
+                        </Button>
+                      </Link>
+                      <Link href="/home/cadastro">
+                        <Button className="p-10" variant={"ghost"}>
+                          Cadastro
+                        </Button>
+                      </Link>
+                    </div>
+                  )}
+                </Suspense>
         </div>
         <div className="bg-[#EEEEEE] h-96 flex flex-col justify-center items-center">
           <Carousel></Carousel>

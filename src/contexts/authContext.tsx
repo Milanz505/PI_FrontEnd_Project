@@ -6,6 +6,7 @@ import logarUsuario from "@/services/APIs/userAuthentication";
 import api from "@/lib/api";
 import jwt from 'jsonwebtoken'
 import UserProfile from "@/services/APIs/userProfile";
+import { fetchMe } from "./x";
 
 
 type SignInData = {
@@ -24,23 +25,31 @@ export const AuthContext = createContext({} as AuthContextType)
 const UserRequest = async (token:string) => {
     const decodedToken = jwt.decode(token)
     const user = await UserProfile(decodedToken?.sub)
-    console.log(user)
     return user
 }
+
+
 
 const AuthProvider = ({ children }:any) => {
     const [user, setUser] = useState()
     const isAuthenticated = !!user;
 
     useEffect(() => {
-        const { 'nextauth.token': token } = parseCookies()
-        if (token){
-            UserRequest(token).then((user) => {
-            setUser(user)
-            })
-            // setUser(user)
-            // const decodedToken = jwt.verify(token, process.env.NEXT_PUBLIC_AUTH_SECRET ,{complete: true});
-            } 
+        const isUserLoggedIn = async () => {
+            const user = await fetchMe();
+            setUser(user)   
+        }
+        isUserLoggedIn();
+        // const { 'nextauth.token': token } = parseCookies()
+        // if (token){
+        //     const decodedToken = jwt.verify(token, process.env.NEXT_PUBLIC_AUTH_SECRET as string ,{complete: true});
+        //     console.log('decodedToken', decodedToken)
+        //     // UserRequest(token).then((user) => {
+        //     // setUser(user)
+        //     // })
+        //     // setUser(user)
+        //     // const decodedToken = jwt.verify(token, process.env.NEXT_PUBLIC_AUTH_SECRET ,{complete: true});
+        //     } 
     }, [])
 
     async function signIn({email, password}: SignInData) {
