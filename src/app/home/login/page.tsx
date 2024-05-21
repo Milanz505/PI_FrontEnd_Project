@@ -26,26 +26,26 @@ const Login = () => {
     return (
       <div className="min-h-screen bg-[#f3f4f6] flex justify-between">
         <div className="w-full">
-        <Image
-                  className="h-full "
-                  src={"https://placehold.co/1920x1080/png"}
-                  alt="Workflow"
-                  width={1920}
-                  height={1080}
-                />
+          <Image
+            className="h-full "
+            src={"https://placehold.co/1920x1080/png"}
+            alt="Workflow"
+            width={1920}
+            height={1080}
+          />
         </div>
         <div className="bg-white p-10 rounded-lg shadow-lg w-96 flex items-center">
           <div className="w-full">
             <div className="flex justify-center mb-10">
-              <Button className="bg-[#64BCED] text-white w-24 h-12 rounded-lg">
-                Logo
-              </Button>
+              <Button className="bg-[#64BCED] text-white w-24 h-12 rounded-lg"></Button>
             </div>
             <h2 className="text-center text-2xl font-bold mb-5">Acesso</h2>
-            <form className="space-y-4" onSubmit={handleSubmit((data) =>handleSignIn(
-              data.email,
-              data.password,
-            ))}>
+            <form
+              className="space-y-4"
+              onSubmit={handleSubmit((data) =>
+                handleSignIn(data.email, data.password)
+              )}
+            >
               <div>
                 <Label className="block mb-2" htmlFor="email">
                   E-mail
@@ -85,7 +85,7 @@ const Login = () => {
                 <span className="text-sm">Ainda não tem uma conta? </span>
                 <Link
                   className="text-sm text-blue-600 hover:underline"
-                  href="/cadastro"
+                  href="/home/cadastro"
                 >
                   Crie a sua
                 </Link>

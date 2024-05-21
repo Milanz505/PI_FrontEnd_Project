@@ -98,14 +98,7 @@ const Cadastro = () => {
                   name="confirmarSenha"
                 />
               </div>
-              <div className="text-right">
-                <Link
-                  className="text-sm text-blue-600 hover:underline"
-                  href="#"
-                >
-                  Esqueci minha senha
-                </Link>
-              </div>
+            
               <div className="justify-center flex">
                 <Button className="w-40 bg-[#64BCED]">Entrar</Button>
               </div>
