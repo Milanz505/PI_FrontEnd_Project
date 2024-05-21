@@ -6,7 +6,7 @@ import logarUsuario from "@/services/APIs/userAuthentication";
 import api from "@/lib/api";
 import jwt from 'jsonwebtoken'
 import UserProfile from "@/services/APIs/userProfile";
-import { fetchMe } from "./x";
+import { fetchMe } from "./authFunctions";
 
 
 type SignInData = {
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }:any) => {
             setUser(user)   
         }
         isUserLoggedIn();
-        // const { 'nextauth.token': token } = parseCookies()
+        // const { 'token': token } = parseCookies()
         // if (token){
         //     const decodedToken = jwt.verify(token, process.env.NEXT_PUBLIC_AUTH_SECRET as string ,{complete: true});
         //     console.log('decodedToken', decodedToken)
@@ -59,7 +59,7 @@ const AuthProvider = ({ children }:any) => {
         )
         const {token, user} = response.data
 
-        setCookie(undefined, 'nextauth.token', token, {
+        setCookie(undefined, 'token', token, {
             maxAge: 60601, //1 hour
         })
 

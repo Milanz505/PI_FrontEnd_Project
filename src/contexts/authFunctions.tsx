@@ -8,7 +8,7 @@ import { cookies } from 'next/headers';
 export async function openSessionToken() {
     try {
         //pega o token
-        const sessionToken = cookies().get("nextauth.token");
+        const sessionToken = cookies().get("token");
         if (!sessionToken) return null;
 
         // verifica se a assinatura do token é valida (cai no catch caso nao for)
@@ -26,7 +26,7 @@ export async function openSessionToken() {
 }
 
 export async function destroySession() {
-  cookies().delete('nextauth.token');
+  cookies().delete('token');
 }
 
 
