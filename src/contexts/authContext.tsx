@@ -2,18 +2,12 @@
 
 import { Children, createContext, use, useEffect, useState } from "react";
 import { setCookie, parseCookies } from "nookies";
-import Router from "next/router";
-import api from "@/lib/api";
 import logarUsuario from "@/services/APIs/userAuthentication";
-import jwt from 'jsonwebtoken';
+import api from "@/lib/api";
+import jwt from 'jsonwebtoken'
+import UserProfile from "@/services/APIs/userProfile";
+import { fetchMe } from "./authFunctions";
 
-type UserData = {
-  confirmarSenha: string;
-  email: string;
-  id: string;
-  nome: string;
-  senha: string;
-};
 
 type SignInData = {
     email: string,
@@ -22,33 +16,40 @@ type SignInData = {
 
 type AuthContextType = {
     isAuthenticated: boolean;
-    user: UserData | undefined;
+    user: any;
     signIn: (data: SignInData) => void;
-}
-
-function signInRequest(data:SignInData) {
-    return {
-        token: 'abdc',
-        user: {
-            name: 'calavo',
-            email: 'macaco@email.com',
-            avatar_url: ''
-        }
-    }
 }
 
 export const AuthContext = createContext({} as AuthContextType)
 
+const UserRequest = async (token:string) => {
+    const decodedToken = jwt.decode(token)
+    const user = await UserProfile(decodedToken?.sub)
+    return user
+}
+
+
+
 const AuthProvider = ({ children }:any) => {
-    const [user, setUser] = useState<UserData>()
-    
+    const [user, setUser] = useState()
     const isAuthenticated = !!user;
 
     useEffect(() => {
-        const { 'nextauth.token': token } = parseCookies()
-        if (token){
-        // const decodedToken = jwt.verify(token, secret, { complete: true });
+        const isUserLoggedIn = async () => {
+            const user = await fetchMe();
+            setUser(user)   
         }
+        isUserLoggedIn();
+        // const { 'token': token } = parseCookies()
+        // if (token){
+        //     const decodedToken = jwt.verify(token, process.env.NEXT_PUBLIC_AUTH_SECRET as string ,{complete: true});
+        //     console.log('decodedToken', decodedToken)
+        //     // UserRequest(token).then((user) => {
+        //     // setUser(user)
+        //     // })
+        //     // setUser(user)
+        //     // const decodedToken = jwt.verify(token, process.env.NEXT_PUBLIC_AUTH_SECRET ,{complete: true});
+        //     } 
     }, [])
 
     async function signIn({email, password}: SignInData) {
@@ -57,15 +58,15 @@ const AuthProvider = ({ children }:any) => {
             password,
         )
         const {token, user} = response.data
-        
-        setCookie(undefined, 'nextauth.token', token, {
-            maxAge: 60*60*1, //1 hour
+
+        setCookie(undefined, 'token', token, {
+            maxAge: 60601, //1 hour
         })
-        
+
         api.defaults.headers['Authorization'] = `Bearer ${token}`;
-        
+
         setUser(user)
-        
+
     }
 
     return (
