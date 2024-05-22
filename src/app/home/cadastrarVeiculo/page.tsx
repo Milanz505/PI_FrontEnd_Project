@@ -25,10 +25,9 @@ const CadastroVeiculo = () => {
     const ctxfunc = useContext(AuthContext)
     const user = ctxfunc.user
     const { register, handleSubmit } = useForm<veicleData>();
-    console.log(user)
 
     const handleVeicle = async (data:veicleData) => {
-        const x = await registrarVeiculo(data.ano, data.descricao,data.nome, data.imagem, data.marca,data.modelo,data.preco,data.tempo,user?.id);
+        const x = await registrarVeiculo(data.ano, data.descricao,data.nome, data.imagem, data.marca,data.modelo,data.preco,data.tempo,user);
     }
 
     return (
