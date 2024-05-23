@@ -6,7 +6,7 @@ import logarUsuario from "@/services/APIs/userAuthentication";
 import api from "@/lib/api";
 import jwt from 'jsonwebtoken'
 import UserProfile from "@/services/APIs/userProfile";
-import { fetchMe } from "./authFunctions";
+import { destroySession, fetchMe } from "./authFunctions";
 
 
 type SignInData = {
@@ -18,16 +18,10 @@ type AuthContextType = {
     isAuthenticated: boolean;
     user: any;
     signIn: (data: SignInData) => void;
+    signOut: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextType)
-
-const UserRequest = async (token:string) => {
-    const decodedToken = jwt.decode(token)
-    const user = await UserProfile(decodedToken?.sub)
-    return user
-}
-
 
 
 const AuthProvider = ({ children }:any) => {
@@ -36,8 +30,10 @@ const AuthProvider = ({ children }:any) => {
 
     useEffect(() => {
         const isUserLoggedIn = async () => {
-            const user = await fetchMe();
-            setUser(user)   
+            if(user){
+                const userInfo = await fetchMe();
+                setUser(userInfo)   
+            }
         }
         isUserLoggedIn();
         // const { 'token': token } = parseCookies()
@@ -60,7 +56,7 @@ const AuthProvider = ({ children }:any) => {
         const {token, user} = response.data
 
         setCookie(undefined, 'token', token, {
-            maxAge: 60601, //1 hour
+            maxAge: 60*60*1, //1 hour
         })
 
         api.defaults.headers['Authorization'] = `Bearer ${token}`;
@@ -69,8 +65,13 @@ const AuthProvider = ({ children }:any) => {
 
     }
 
+    const signOut = async () => {
+        await destroySession()
+        setUser(undefined)
+    }
+
     return (
-        <AuthContext.Provider value={{user, signIn, isAuthenticated}}>
+        <AuthContext.Provider value={{user, signIn, isAuthenticated, signOut}}>
             {children}
         </AuthContext.Provider>
     )
