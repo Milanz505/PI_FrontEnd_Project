@@ -30,10 +30,8 @@ const AuthProvider = ({ children }:any) => {
 
     useEffect(() => {
         const isUserLoggedIn = async () => {
-            if(user){
-                const userInfo = await fetchMe();
-                setUser(userInfo)   
-            }
+            const userInfo = await fetchMe();
+            setUser(userInfo)   
         }
         isUserLoggedIn();
         // const { 'token': token } = parseCookies()

@@ -34,7 +34,7 @@ export async function fetchMe() {
   const payload = await openSessionToken();
 
   //se não tiver payload, retorna null (usuario nao logado)
-  if (!payload) return null;
+  if (!payload) return undefined;
 
   // se tiver payload, retorna os dados do usuario do banco de dados
   return await UserProfile(payload.sub);
