@@ -11,6 +11,7 @@ import { LogOut, MountainIcon, User } from "lucide-react"
 import { destroySession } from "@/contexts/authFunctions"
 import Header from "@/components/header/header"
 import CarouselSize from "@/components/homeCarousel/carousel"
+import DefaultFooter from "@/components/footer/footer"
 
 
 const Home = () => {
@@ -23,9 +24,7 @@ const Home = () => {
           <CarouselSize></CarouselSize>
         </div>
         <div>
-          <div className="bg-[#64BCED] h-10"></div>
-          <div className="bg-[#254354] h-72"></div>
-          <div className="bg-[#64BCED] h-10"></div>
+          <DefaultFooter></DefaultFooter>
         </div>
       </div>
     </main>
