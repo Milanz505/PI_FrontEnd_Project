@@ -23,10 +23,11 @@ const ProductCard = () => {
                     <div className="">
                         <Image
                         className=" "
-                        src={"https://placehold.co/1000x1000/png"}
+                        src={"https://placehold.co/700x700/png"}
                         alt="Josuke"
-                        width={1000}
-                        height={1000}
+                        width={700}
+                        height={700}
+                        priority={true}
                         />
                     </div>
                     {cadastroProd.nomeDoAutomovel}

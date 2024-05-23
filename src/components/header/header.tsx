@@ -1,9 +1,8 @@
 "use client"
 
-import { destroySession } from "@/contexts/authFunctions"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@radix-ui/react-dropdown-menu"
-import { MountainIcon, User, LogOut } from "lucide-react"
-import { Fragment, Suspense, useContext } from "react"
+import { MountainIcon, User, LogOut, Car, CarFront } from "lucide-react"
+import { useContext } from "react"
 import { Button, buttonVariants } from "../ui/button"
 import { useRouter } from "next/navigation"
 import { AuthContext } from "@/contexts/authContext"
@@ -12,7 +11,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
-import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -70,6 +68,14 @@ const Header = () => {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="flex">
+                  <Button asChild variant={"ghost"}>
+                    <Link href={"/minhagaragem"}>
+                      <CarFront className="mr-2 h-4 w-4" />
+                      <span>Meus anúncios</span>
+                    </Link>
+                  </Button>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex">
                   <Button
                     variant={"ghost"}
                     onClick={async () => await signOut()}
@@ -77,14 +83,6 @@ const Header = () => {
                   >
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Sair </span>
-                  </Button>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="flex">
-                  <Button asChild variant={"ghost"} disabled={false}>
-                    <Link href={"/"}>
-                      <User className="mr-2 h-4 w-4" />
-                      <span>Perfil </span>
-                    </Link>
                   </Button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
