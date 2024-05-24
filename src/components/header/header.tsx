@@ -78,12 +78,16 @@ const Header = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem className="flex">
                   <Button
+                    asChild
                     variant={"ghost"}
                     onClick={async () => await signOut()}
                     className="w-full justify-start"
                   >
+                    <Link href={"/home"}>
+                    
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Sair </span>
+                    </Link>
                   </Button>
                 </DropdownMenuItem>
               </DropdownMenuContent>

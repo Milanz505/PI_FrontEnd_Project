@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Card, CardContent } from "../ui/card"
 
-const VeicleCard = ({vehicle}:{vehicle: any}) => {
+const VehicleCard = ({vehicle}:{vehicle: any}) => {
 
     console.log('vehicle card', vehicle)
     return (
@@ -29,4 +29,4 @@ const VeicleCard = ({vehicle}:{vehicle: any}) => {
     )
 }
 
-export default VeicleCard
+export default VehicleCard
