@@ -4,7 +4,6 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import { MountainIcon, User, LogOut, Car, CarFront } from "lucide-react"
 import { useContext } from "react"
 import { Button, buttonVariants } from "../ui/button"
-import { useRouter } from "next/navigation"
 import { AuthContext } from "@/contexts/authContext"
 import {
   Avatar,
@@ -21,11 +20,13 @@ const Header = () => {
     const navigation = ['Comprar', 'Vender', 'FIPE', 'Sobre']
     const { user, signOut } = useContext(AuthContext)
 
-    const router = useRouter()
     return (
       <main className="bg-[#FFFFFF] h-20 flex flex-row items-center justify-between px-4">
         <div className="w-28">
+          <Link href={'/home'}>
+          
           <MountainIcon className="" size={28} />
+          </Link>
         </div>
         {/* Gera os botões nomeados no array */}
         <div className="">

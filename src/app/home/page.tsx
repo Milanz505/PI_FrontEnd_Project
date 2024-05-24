@@ -8,12 +8,15 @@ import DefaultFooter from "@/components/footer/footer"
 const Home = () => {
 
   return (
-    <main className="min-h-min">
+    <main className="">
       <div>
-        <Header></Header>
+        <div>
+          <Header></Header>
+        </div>
         <div className="bg-[#EEEEEE] flex flex-col justify-center items-center">
           <CarouselSize></CarouselSize>
         </div>
+        
         <div>
           <DefaultFooter></DefaultFooter>
         </div>
