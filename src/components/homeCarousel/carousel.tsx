@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { Card, CardContent } from "@/components/ui/card"
-import ProductCard from "../productCard/product"
+import VehicleCard from "../vehicleCard/card"
 import {
   Carousel,
   CarouselContent,
@@ -21,7 +21,7 @@ const CarouselSize = () => {
           {Array.from({ length: 9 }).map((_, index) => (
             <CarouselItem key={index} className="basis-1/6">
               <div className="">
-                <ProductCard></ProductCard>
+                
               </div>
             </CarouselItem>
           ))}

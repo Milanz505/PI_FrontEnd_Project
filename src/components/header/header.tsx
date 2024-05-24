@@ -1,18 +1,15 @@
 "use client"
 
-import { destroySession } from "@/contexts/authFunctions"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@radix-ui/react-dropdown-menu"
-import { MountainIcon, User, LogOut } from "lucide-react"
-import { Fragment, Suspense, useContext } from "react"
+import { MountainIcon, User, LogOut, Car, CarFront } from "lucide-react"
+import { useContext } from "react"
 import { Button, buttonVariants } from "../ui/button"
-import { useRouter } from "next/navigation"
 import { AuthContext } from "@/contexts/authContext"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
-import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -23,11 +20,13 @@ const Header = () => {
     const navigation = ['Comprar', 'Vender', 'FIPE', 'Sobre']
     const { user, signOut } = useContext(AuthContext)
 
-    const router = useRouter()
     return (
       <main className="bg-[#FFFFFF] h-20 flex flex-row items-center justify-between px-4">
         <div className="w-28">
+          <Link href={'/home'}>
+          
           <MountainIcon className="" size={28} />
+          </Link>
         </div>
         {/* Gera os botões nomeados no array */}
         <div className="">
@@ -70,20 +69,24 @@ const Header = () => {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="flex">
+                  <Button asChild variant={"ghost"}>
+                    <Link href={"/minhagaragem"}>
+                      <CarFront className="mr-2 h-4 w-4" />
+                      <span>Meus anúncios</span>
+                    </Link>
+                  </Button>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex">
                   <Button
+                    asChild
                     variant={"ghost"}
                     onClick={async () => await signOut()}
                     className="w-full justify-start"
                   >
+                    <Link href={"/home"}>
+                    
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Sair </span>
-                  </Button>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="flex">
-                  <Button asChild variant={"ghost"} disabled={false}>
-                    <Link href={"/"}>
-                      <User className="mr-2 h-4 w-4" />
-                      <span>Perfil </span>
                     </Link>
                   </Button>
                 </DropdownMenuItem>
