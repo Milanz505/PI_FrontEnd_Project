@@ -25,6 +25,7 @@ const Garage = () => {
           };
           fetchCar();
         }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [userLoaded]);
 
 return (
