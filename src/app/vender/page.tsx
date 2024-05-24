@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { AuthContext } from "@/contexts/authContext"
-import registrarVeiculo from "@/services/APIs/veicleAuthentication"
+import registrarVeiculo from "@/services/APIs/vehicleAuthentication"
 import Link from "next/link"
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
 
-type veicleData = {
+type vehicleData = {
     nome:string,
     modelo:string,
     marca:string,
@@ -24,11 +24,10 @@ type veicleData = {
 const CadastroVeiculo = () => {
     const ctxfunc = useContext(AuthContext)
     const user = ctxfunc.user
-    const { register, handleSubmit } = useForm<veicleData>();
-    console.log(user)
+    const { register, handleSubmit } = useForm<vehicleData>();
 
-    const handleVeicle = async (data:veicleData) => {
-        const x = await registrarVeiculo(data.ano, data.descricao,data.nome, data.imagem, data.marca,data.modelo,data.preco,data.tempo,user?.id);
+    const handleVehicle = async (data:vehicleData) => {
+        const x = await registrarVeiculo(data.ano, data.descricao,data.nome, data.imagem, data.marca,data.modelo,data.preco,data.tempo,user);
     }
 
     return (
@@ -38,7 +37,7 @@ const CadastroVeiculo = () => {
             <p className="">Anunciar Veículo</p>
         </div>
         <form
-            onSubmit={handleSubmit(handleVeicle)}
+            onSubmit={handleSubmit(handleVehicle)}
             className="flex flex-col justify-center items-center space-y-4 mt-6"
         >
           <div>

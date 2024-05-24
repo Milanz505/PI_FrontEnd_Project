@@ -28,7 +28,7 @@ const registrarVeiculo = async (
         });
 
         if(!response.data) {
-            throw new Error('Veicle registration failed')
+            throw new Error('Vehicle registration failed')
         }
         console.log('response.data',response.data)
         console.log('response', response)
