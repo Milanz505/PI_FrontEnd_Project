@@ -20,7 +20,7 @@ const VehicleCard = ({vehicle}:{vehicle: any}) => {
                   priority={true}
                 />
               </div>
-                  <div className="bg-[#64BCED] h-[1px]"></div>
+                  <div className="bg-[#64BCED] h-1 "></div>
               <div className="font-sans text-sm mr-2 ml-2 mb-2 w-28">
                   <div>{vehicle.nomeDoAutomovel} </div>
                   <div className="mb-2 text-zinc-400">{vehicle.marca}</div>

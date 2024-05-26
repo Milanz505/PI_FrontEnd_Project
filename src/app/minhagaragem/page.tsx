@@ -22,6 +22,7 @@ const Garage = () => {
           const fetchCar = async () => {
             const userCars = await UserVehicle(user?.id);
             setCars(userCars);
+            console.log(userCars)
           };
           fetchCar();
         }
@@ -33,20 +34,18 @@ return (
     <div>
       <Header></Header>
     </div>
-    <div className="flex justify-center items-center flex-grow">
-      <div className=" mt-10 mb-10">
-        {cars.length > 0 ? (
-          <div className="grid grid-cols-4 gap-10">
-            {cars.map((car, index) => (
-              <VehicleCard key={index} vehicle={car} />
-            ))}
-          </div>
-        ) : (
-          <div className="">
-            <p>voce não possui carros anunciados</p>
-          </div>
-        )}
-      </div>
+    <div className="flex justify-center items-center flex-grow mt-10 mb-10">
+      {cars.length > 0 ? (
+        <div className="grid grid-cols-4 gap-10">
+          {cars.map((car, index) => (
+            <VehicleCard key={index} vehicle={car} />
+          ))}
+        </div>
+      ) : (
+        <div className="">
+          <p>voce não possui carros anunciados</p>
+        </div>
+      )}
     </div>
     <div>
       <DefaultFooter></DefaultFooter>
