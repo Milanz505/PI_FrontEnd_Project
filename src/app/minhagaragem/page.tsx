@@ -29,23 +29,26 @@ const Garage = () => {
       }, [userLoaded]);
 
 return (
-    <div className="min-h-min">
-        <div>
-            <Header></Header>
-        </div>
-        <div className="mt-10">
-            <div className="flex justify-center">
-                {cars.length > 0
-                ? cars.map((car, index) => <VehicleCard key={index} vehicle={car}/>)
-            :<p>voce não possui carros anunciados</p>}
-        
-            </div>
-        </div>
-        <div>
-            <DefaultFooter></DefaultFooter>
-        </div>
+  <div className="bg-[#EEEEEE]">
+    <div>
+      <Header></Header>
     </div>
-    );
+    <div className="flex justify-center items-center">
+      <div className="grid grid-cols-4 gap-10 mt-10 mb-10">
+        {cars.length > 0 ? (
+          cars.map((car, index) => <VehicleCard key={index} vehicle={car} />)
+        ) : (
+          <div className="">
+            <p>voce não possui carros anunciados</p>
+          </div>
+        )}
+      </div>
+    </div>
+    <div>
+      <DefaultFooter></DefaultFooter>
+    </div>
+  </div>
+);
 }
 
 export default Garage
