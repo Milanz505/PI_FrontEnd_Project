@@ -29,14 +29,18 @@ const Garage = () => {
       }, [userLoaded]);
 
 return (
-  <div className="bg-[#EEEEEE]">
+  <div className="bg-[#EEEEEE] flex min-h-screen flex-col">
     <div>
       <Header></Header>
     </div>
-    <div className="flex justify-center items-center">
-      <div className="grid grid-cols-4 gap-10 mt-10 mb-10">
+    <div className="flex justify-center items-center flex-grow">
+      <div className=" mt-10 mb-10">
         {cars.length > 0 ? (
-          cars.map((car, index) => <VehicleCard key={index} vehicle={car} />)
+          <div className="grid grid-cols-4 gap-10">
+            {cars.map((car, index) => (
+              <VehicleCard key={index} vehicle={car} />
+            ))}
+          </div>
         ) : (
           <div className="">
             <p>voce não possui carros anunciados</p>
