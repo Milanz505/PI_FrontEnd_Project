@@ -4,9 +4,11 @@ import DefaultFooter from "@/components/footer/footer"
 import Header from "@/components/header/header"
 import VehicleCard from "@/components/vehicleCard/card";
 import allCars from "@/services/APIs/allVehicles";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react"
 
 type Car = {
+    id:string,
     ano:string,
     descricao:string,
     nome:string,
@@ -18,14 +20,22 @@ type Car = {
     user:any
 }
 
+type VehicleCardProps = {
+    key: number;
+    vehicle: Car;
+    onClick: () => void;
+}
+
 const Comprar = () => {
     const [cars, setCars] = useState<Car[]>([])
+    const router = useRouter();
 
     useEffect(() => {
         const fetchCars = async () => {
             const useCars = await allCars()
             if (useCars) {
-                setCars(useCars.data)
+                // @ts-ignore
+                setCars(useCars.data.content)
             }
         }
         fetchCars()
@@ -43,9 +53,13 @@ const Comprar = () => {
                 </div>
                 <div className="flex justify-center flex-grow mt-10 mb-10">
                     {cars.length > 0 ? (
-                        <div className="grid grid-cols-5 gap-10">
+                        <div className="grid grid-cols-5 gap-10" >
                             {cars.map((car, index) => (
-                                <VehicleCard key={index} vehicle={car} />
+                                <div key={index} onClick={() => router.push(`/vehicle/${car.id}`)}>
+                                    <VehicleCard
+                                    vehicle={car}
+                                    />
+                                </div>
                             ))}
                         </div>
                     ):(<div>
