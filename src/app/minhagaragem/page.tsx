@@ -2,7 +2,7 @@
 
 import DefaultFooter from "@/components/footer/footer"
 import Header from "@/components/header/header"
-import VehicleCard from "@/components/vehicleCard/card";
+import VehicleCard from "@/components/vehicleCard/vehicleCard";
 import { AuthContext } from "@/contexts/authContext";
 import UserVehicle from "@/services/APIs/userVehicle";
 import { useContext, useEffect, useState } from "react";

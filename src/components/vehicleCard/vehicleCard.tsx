@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 const VehicleCard = ({vehicle}:{vehicle: any}) => {
 
-    console.log('vehicle card', vehicle)
+    // console.log('vehicle card', vehicle)
     return (
       <main>
         <Card className=" border-none">
