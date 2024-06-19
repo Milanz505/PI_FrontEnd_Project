@@ -1,16 +1,15 @@
-'use client'
+"use client"
 
 import DefaultFooter from "@/components/footer/footer"
 import Header from "@/components/header/header"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
+import { DropdownMenuContent, DropdownMenuItem, DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 import UsersReq from "@/services/APIs/allUsers"
 import DeleteUser from "@/services/APIs/deleteUser"
-import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
-import { ScrollArea } from "@radix-ui/react-scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Trash2, User } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -22,24 +21,27 @@ type User = {
 }
 
 const Control = () => {
-    const [users, setUsers] = useState<User[]>([])
 
-    useEffect(() => {
-      const FetchUsers = async () => {
-        const allusers: User[] = await UsersReq();
-        setUsers(allusers);
-      };
-      FetchUsers();
-    }, [users]);
+  const [users, setUsers] = useState<User[]>([])
 
-    return (
+  useEffect(() => {
+    const FetchUsers = async () => {
+      const allusers: User[] = await UsersReq();
+      setUsers(allusers);
+    };
+    FetchUsers();
+  }, [users]);
+
+  return (
+    <div>
       <div>
-        <div>
-          <Header />
-        </div>
-        <div className="justify-center flex">
-          <ScrollArea className="h-96 w-[504px] rounded-md border">
-              {users.map((object, index) => (
+        <Header />
+      </div>
+      <div className="justify-center flex">
+        <ScrollArea className="h-96 w-[540px] rounded-md border">
+          <div>
+            {users.map((object, index) => (
+              <>
                 <Card key={index} className="border-0">
                   <CardContent className="p-2">
                     <div className="flex items-center justify-between">
@@ -69,13 +71,15 @@ const Control = () => {
                                 )}
                               >
                                 <User className="mr-2 h-4 w-4" />
-                                Perfil
+                                Ver perfil
                               </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem className="flex p-0">
                               <Button
                                 className="bg-red-500 hover:bg-red-800 rounded-none w-full"
-                                onClick={async () => await DeleteUser(object.id)}
+                                onClick={async () =>
+                                  await DeleteUser(object.id)
+                                }
                               >
                                 <Trash2 className="mr-2 h-4 w-4" />
                                 Deletar usuário
@@ -87,15 +91,16 @@ const Control = () => {
                     </div>
                   </CardContent>
                 </Card>
-              ))}
-          </ScrollArea>
-            
-        </div>
-        <div>
-          <DefaultFooter />
-        </div>
+              </>
+            ))}
+          </div>
+        </ScrollArea>
       </div>
-    );
+      <div>
+        <DefaultFooter />
+      </div>
+    </div>
+  );
 }
 
 export default Control
