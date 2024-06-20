@@ -3,12 +3,12 @@ import axios from "axios";
 type Car = {
     ano:string,
     descricao:string,
-    nome:string,
-    imagem:string,
+    nomeDoAutomovel:string,
+    imagemUrl:string,
     marca:string,
     modelo:string,
     preco:string,
-    tempo:string,
+    tempoDeUso:string,
     user:any
   }
 
@@ -17,6 +17,7 @@ const UserVehicle = async (userId:any) => {
     try{
     const response = await axios.get<Car>("http://localhost:8080/anuncio/id-user/"+userId)
     // console.log(response)
+    console.log(response.data)
     return response.data
 
     } catch (error) {

@@ -10,17 +10,17 @@ import { useContext, useEffect, useState } from "react";
 type Car = {
   ano:string,
   descricao:string,
-  nome:string,
-  imagem:string,
+  nomeDoAutomovel:string,
+  imagemUrl:string,
   marca:string,
   modelo:string,
   preco:string,
-  tempo:string,
+  tempoDeUso:string,
   user:any
 }
 
 const Garage = () => {
-    const [cars, setCars] = useState([])
+    const [cars, setCars] = useState<Car[]>([])
     const [userLoaded, setUserLoaded] = useState(false);
     const { user } = useContext(AuthContext)
     useEffect(() => {
@@ -32,7 +32,7 @@ const Garage = () => {
       useEffect(() => {
         if (userLoaded) {
           const fetchCar = async () => {
-            const userCars = await UserVehicle(user?.id);
+            const userCars = await UserVehicle(user?.id) as Car[];
             setCars(userCars);
             console.log(userCars)
           };
