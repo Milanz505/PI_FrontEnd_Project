@@ -45,14 +45,15 @@ const BuyCar = () => {
                     alt="Workflow"
                     width={520}
                     height={540}
-                    
                   />
                 </div>
                 <div className="flex flex-col justify-between">
                   <div className="flex flex-col items-center">
                     <div>{Car?.nome}</div>
                     <div>{Car?.marca}</div>
-                    <div className="w-48 text-sm text-start">{Car?.descricao}</div>
+                    <div className="w-48 text-sm text-start">
+                      {Car?.descricao}
+                    </div>
                     <div>{Car?.ano}</div>
                     <div>{Car?.tempo}</div>
                     <div>{Car?.preco}</div>

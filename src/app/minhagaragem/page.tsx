@@ -7,6 +7,18 @@ import { AuthContext } from "@/contexts/authContext";
 import UserVehicle from "@/services/APIs/userVehicle";
 import { useContext, useEffect, useState } from "react";
 
+type Car = {
+  ano:string,
+  descricao:string,
+  nome:string,
+  imagem:string,
+  marca:string,
+  modelo:string,
+  preco:string,
+  tempo:string,
+  user:any
+}
+
 const Garage = () => {
     const [cars, setCars] = useState([])
     const [userLoaded, setUserLoaded] = useState(false);
@@ -36,9 +48,9 @@ return (
     </div>
     <div className="flex justify-center items-center flex-grow mt-10 mb-10">
       {cars.length > 0 ? (
-        <div className="grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-3 gap-10">
           {cars.map((car, index) => (
-            <VehicleCard key={index} vehicle={car} />
+            <VehicleCard key={index} vehicle={car} buttontitle={"Editar"}/>
           ))}
         </div>
       ) : (
