@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Card, CardContent } from "../ui/card"
 import { Button } from "../ui/button";
 import { CalendarDays, Gauge } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 type Car = {
   ano:string,
@@ -16,6 +17,8 @@ type Car = {
 }
 
 const VehicleCard = ({vehicle, buttontitle}:{vehicle:Car, buttontitle:string}) => {
+  const url = usePathname().split('/').pop() as string
+  
   return (
     <main>
       <Card className=" border-none">
@@ -50,7 +53,7 @@ const VehicleCard = ({vehicle, buttontitle}:{vehicle:Car, buttontitle:string}) =
               <div className="items-center flex flex-col justify-between">
                 <div>Por R${vehicle.preco}</div>
                 <Button className="bg-[#64BCED] w-32">{buttontitle}</Button>
-              </div>
+               </div>
             </div>
           </div>
         </CardContent>
