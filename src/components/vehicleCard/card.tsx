@@ -1,8 +1,13 @@
 import Image from "next/image"
 import { Card, CardContent } from "../ui/card"
-import { Button } from "../ui/button";
-import { CalendarDays, Gauge } from "lucide-react";
+import { Button, buttonVariants } from "../ui/button";
+import { CalendarDays, CarFrontIcon, Gauge, Pencil, Trash2 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTrigger } from "../ui/dialog";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 type Car = {
   ano:string,
@@ -18,7 +23,8 @@ type Car = {
 
 const VehicleCard = ({vehicle, buttontitle}:{vehicle:Car, buttontitle:string}) => {
   const url = usePathname().split('/').pop() as string
-  
+  const garagem = "minhagaragem"
+
   return (
     <main>
       <Card className=" border-none">
@@ -41,19 +47,27 @@ const VehicleCard = ({vehicle, buttontitle}:{vehicle:Car, buttontitle:string}) =
                 <div className="mb-2 text-zinc-400">{vehicle.marca}</div>
                 <div className="flex text-[12px]">
                   <div className="flex items-center mr-2">
-                    <Gauge className="h-3 w-3 mr-1"/>
+                    <Gauge className="h-3 w-3 mr-1" />
                     <div>57.150 km</div>
                   </div>
                   <div className="flex items-center">
-                    <CalendarDays className="h-3 w-3 mr-1"/>
+                    <CalendarDays className="h-3 w-3 mr-1" />
                     <div>{vehicle.ano}</div>
                   </div>
                 </div>
               </div>
               <div className="items-center flex flex-col justify-between">
                 <div>Por R${vehicle.preco}</div>
-                <Button className="bg-[#64BCED] w-32">{buttontitle}</Button>
-               </div>
+                {url === garagem ? (
+                  <Button 
+                  className="bg-[#64BCED] w-32"
+                  
+                  >Visualizar anúncio</Button>
+                
+                ) : (
+                  <Button className="bg-[#64BCED] w-32">Ver mais</Button>
+                )}
+              </div>
             </div>
           </div>
         </CardContent>
