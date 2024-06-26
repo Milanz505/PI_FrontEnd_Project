@@ -3,13 +3,10 @@ import { Card, CardContent } from "../ui/card"
 import { Button, buttonVariants } from "../ui/button";
 import { CalendarDays, CarFrontIcon, Gauge, Pencil, Trash2 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTrigger } from "../ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
+import { useRouter } from "next/navigation";
 
 type Car = {
+  id:string,
   ano:string,
   descricao:string,
   nomeDoAutomovel:string,
@@ -24,6 +21,7 @@ type Car = {
 const VehicleCard = ({vehicle, buttontitle}:{vehicle:Car, buttontitle:string}) => {
   const url = usePathname().split('/').pop() as string
   const garagem = "minhagaragem"
+  const router = useRouter()
 
   return (
     <main>
@@ -31,14 +29,16 @@ const VehicleCard = ({vehicle, buttontitle}:{vehicle:Car, buttontitle:string}) =
         <CardContent className=" rounded-lg overflow-hidden flex justify-center p-0">
           <div className="">
             <div className="">
-              <Image
-                className=""
-                src={"https://placehold.co/500x500/png"}
-                alt="ImagemAutoral"
-                width={340}
-                height={340}
-                priority={true}
-              />
+              <div onClick={() => router.push(`/vehicle/${vehicle.id}`)}>
+                <Image
+                  className=""
+                  src={"https://placehold.co/500x500/png"}
+                  alt="ImagemAutoral"
+                  width={340}
+                  height={340}
+                  priority={true}
+                />
+              </div>
             </div>
             <div className="bg-[#64BCED] h-1 "></div>
             <div className="font-sans text-sm p-6 pt-2 flex justify-between">
@@ -59,13 +59,19 @@ const VehicleCard = ({vehicle, buttontitle}:{vehicle:Car, buttontitle:string}) =
               <div className="items-center flex flex-col justify-between">
                 <div>Por R${vehicle.preco}</div>
                 {url === garagem ? (
-                  <Button 
-                  className="bg-[#64BCED] w-32"
-                  
-                  >Visualizar anúncio</Button>
-                
+                  <Button
+                    className="bg-[#64BCED] w-32"
+                    onClick={() => router.push(`/vehicle/${vehicle.id}`)}
+                  >
+                    Visualizar anúncio
+                  </Button>
                 ) : (
-                  <Button className="bg-[#64BCED] w-32">Ver mais</Button>
+                  <Button
+                    onClick={() => router.push(`/vehicle/${vehicle.id}`)}
+                    className="bg-[#64BCED] w-32"
+                  >
+                    Ver mais
+                  </Button>
                 )}
               </div>
             </div>

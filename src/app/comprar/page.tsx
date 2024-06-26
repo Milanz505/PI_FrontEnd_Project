@@ -47,8 +47,7 @@ const Comprar = () => {
                 {cars.map((car, index) => (
                   <div
                     key={index}
-                    onClick={() => router.push(`/vehicle/${car.id}`)}
-                  >
+                    >
                     <VehicleCard vehicle={car} buttontitle="Ver mais" />
                   </div>
                 ))}
